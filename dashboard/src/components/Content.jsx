@@ -1,5 +1,12 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
+import {Segment} from 'semantic-ui-react'
+import ToolSearch from './ToolSearch.jsx'
+
+const divStyle= {
+  marginLeft: '210px',
+  width:'100%',
+};
 
 export default class Content extends React.Component {
 
@@ -8,13 +15,16 @@ export default class Content extends React.Component {
     super(props)
   }
 
+
   componentDidMount() { }
 
   render() {
-    return (<Switch>
-      
+    return (<div style={divStyle}>
+      <Switch>
+      <Route path='/resources/tools' component={ToolSearch}/>
 
 
-    </Switch>)
+    </Switch>
+  </div>)
   }
 }

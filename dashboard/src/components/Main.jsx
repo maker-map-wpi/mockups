@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from "semantic-ui-react"
+import { Button, Segment } from "semantic-ui-react"
 import axios from 'axios'
 import Content from './Content'
 import Navigator from './Navigator'
@@ -17,7 +17,7 @@ export default class Main extends React.Component {
   render() {
     return (<div>
       <Navigator />
-      <Content />
+      <Content/>
     </div>)
   }
 }
