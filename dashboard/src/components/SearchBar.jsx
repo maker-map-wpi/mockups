@@ -1,23 +1,52 @@
+import _ from 'lodash'
 import React from 'react'
-import {Search ,Image } from "semantic-ui-react"
+import { Search, Grid, Header, Segment } from 'semantic-ui-react'
 
-const divStyle= {
-  padding:'20px'
+const initialState = { isLoading: false, results: [], value: '' }
+
+const searchStyle = {
+  paddingTop: '20px',
+  paddingRight: '20px',
+  paddingLeft: '20px'
 };
 
-export default class Example extends React.Component {
+export default class SearchBar extends React.Component {
+  state = initialState
 
-  constructor(props) {
-    //make a blank articles list in state
-    super(props)
-  }
+  handleResultSelect = (e, { result }) => this.setState({ value: result.title })
 
-  componentDidMount() {
+  handleSearchChange = (e, { value }) => {
+    this.setState({ isLoading: true, value })
+
+    setTimeout(() => {
+      if (this.state.value.length < 1) return this.setState(initialState)
+
+      const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
+      const isMatch = (result) => re.test(result.title)
+
+      this.setState({
+        isLoading: false,
+        results: _.filter(this.props.data, isMatch),
+      })
+    }, 300)
   }
 
   render() {
-    return (<div style={divStyle}>
-      <Search/>
-    </div>)
+    const { isLoading, value, results } = this.state
+
+    return (
+      <div style={searchStyle}>
+        <Search
+          loading={isLoading}
+          onResultSelect={this.props.onResultSelect}
+          onSearchChange={_.debounce(this.handleSearchChange, 500, {
+            leading: true,
+          })}
+          results={results}
+          value={value}
+          {...this.props}
+        />
+      </div>
+    )
   }
 }

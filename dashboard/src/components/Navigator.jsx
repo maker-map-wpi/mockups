@@ -1,5 +1,5 @@
 import React from 'react'
-import { Menu, Icon, Image, Segment} from "semantic-ui-react"
+import { Menu, Icon, Image, Segment } from "semantic-ui-react"
 import { Link } from 'react-router-dom'
 
 export default class Task extends React.Component {
@@ -25,59 +25,59 @@ export default class Task extends React.Component {
           href=''
         >
           Github
-      <Icon name='github'/>
+      <Icon name='github' />
         </Menu.Item>
       </Menu.Menu>
       <Menu.Item header>
         <strong>Resources</strong>
       </Menu.Item>
       <Menu.Menu>
-      <Menu.Item as={Link}
-        name='find tools'
-        to='/resources/tools/'
-      />
-      <Menu.Item as={Link}
-        name='schedule resources'
-        to='/resources/schedule/'
-      />
-      <Menu.Item as={Link}
-        name='model resource page'
-        to='/ex/resource/'
-      />
+        <Menu.Item as={Link}
+          name='find tools'
+          to='/resources/tools/'
+        />
+        <Menu.Item as={Link}
+          name='schedule resources'
+          to='/resources/schedule/'
+        />
+        <Menu.Item as={Link}
+          name='model resource page'
+          to='/ex/resource/'
+        />
       </Menu.Menu>
       <Menu.Item header>
         <strong>People</strong>
       </Menu.Item>
       <Menu.Menu>
-      <Menu.Item as={Link}
-        name='find professor'
-        to='/people/professor/'
-      />
-      <Menu.Item as={Link}
-        name='find students'
-        to='/people/student/'
-      />
-      <Menu.Item as={Link}
-        name='find faculty'
-        to='/people/faculty/'
-      />
-      <Menu.Item as={Link}
-        name='model person page'
-        to='/ex/person/'
-      />
+        <Menu.Item as={Link}
+          name='find professor'
+          to='/people/professor/'
+        />
+        <Menu.Item as={Link}
+          name='find students'
+          to='/people/student/'
+        />
+        <Menu.Item as={Link}
+          name='find faculty'
+          to='/people/faculty/'
+        />
+        <Menu.Item as={Link}
+          name='model person page'
+          to='/ex/person/'
+        />
       </Menu.Menu>
       <Menu.Item header>
         <strong>Projects</strong>
       </Menu.Item>
       <Menu.Menu>
-      <Menu.Item as={Link}
-        name='find projects'
-        to='/projects/active/'
-      />
-      <Menu.Item as={Link}
-        name='example project page'
-        to='/ex/projects/'
-      />
+        <Menu.Item as={Link}
+          name='find projects'
+          to='/projects/active/'
+        />
+        <Menu.Item as={Link}
+          name='example project page'
+          to='/ex/projects/'
+        />
       </Menu.Menu>
     </Menu >)
   }
