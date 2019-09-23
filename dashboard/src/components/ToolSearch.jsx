@@ -2,7 +2,8 @@ import React from 'react'
 import { Container, Segment, Image, Search } from "semantic-ui-react"
 import SearchBar from './SearchBar';
 import Pin from './Pin';
-import ReactMapGL, { Marker } from 'react-map-gl';
+import PinInfo from './PinInfo';
+import ReactMapGL, { Marker, Popup } from 'react-map-gl';
 
 
 
@@ -60,13 +61,35 @@ export default class ToolSearch extends React.Component {
         longitude: -71.8063,
         zoom: 16
       },
-      highlights: []
+      highlights: [],
+      popupInfo: null,
+      curTool: null,
     }
+  }
+
+  _renderPopup() {
+    const {popupInfo} = this.state;
+
+    return (
+      popupInfo && (
+        <Popup
+          tipSize={5}
+          anchor="top"
+          longitude={popupInfo.long}
+          latitude={popupInfo.lat}
+          closeOnClick={false}
+          onClose={() => this.setState({popupInfo: null})}
+        >
+          <PinInfo info={popupInfo} name={this.state.curTool}/>
+        </Popup>
+      )
+    );
   }
 
   onResultSelect(event, { result }) {
     this.setState({
-      highlights: result.locations.map(loc => buildings[loc])
+      highlights: result.locations.map(loc => buildings[loc]),
+      curTool: result.title
     })
   }
 
@@ -86,10 +109,12 @@ export default class ToolSearch extends React.Component {
           >
             {this.state.highlights.map(loc => (
               <Marker key={loc.lat} latitude={loc.lat} longitude={loc.long} offsetLeft={-20} offsetTop={-10}>
-                <Pin  />
-              </Marker>)
-            )
+                <Pin onClick={() => this.setState({ popupInfo: loc })} />
+              </Marker>))
             }
+
+            {this._renderPopup()}
+
             <SearchBar
               data={tools}
               onResultSelect={this.onResultSelect.bind(this)}
