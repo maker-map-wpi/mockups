@@ -1,7 +1,9 @@
 import React from 'react'
 import { Container, Segment, Image, Search } from "semantic-ui-react"
 import SearchBar from './SearchBar';
-import ReactMapGL from 'react-map-gl';
+import Pin from './Pin';
+import ReactMapGL, { Marker } from 'react-map-gl';
+
 
 
 const mapboxToken = "pk.eyJ1IjoibWFrZXJtYXB3cGkiLCJhIjoiY2swdTltbzh3MGx5cDNjcjFwZ3VzazMyOSJ9.1v6fPlHkiBC92yjc-rV6iQ"
@@ -23,23 +25,23 @@ const tools = [
 
 const buildings = {
   foise: {
-    x: 320,
-    y: 420,
+    lat: 42.274346,
+    long: -71.808640,
     hours: '06:00 to 24:00'
   },
   washburn: {
-    x: 320,
-    y: 420,
+    lat: 42.274769,
+    long: -71.806988,
     hours: '08:00 to 18:00'
   },
   higgins: {
-    x: 320,
-    y: 420,
+    lat: 42.274152,
+    long: -71.8082925,
     hours: '08:00 to 16:00'
   },
   goddard: {
-    x: 320,
-    y: 420,
+    lat: 42.275469,
+    long: -71.807814,
     hours: '08:00 to 16:00'
   }
 
@@ -58,40 +60,45 @@ export default class ToolSearch extends React.Component {
         longitude: -71.8063,
         zoom: 16
       },
-      highlights: {}
+      highlights: []
     }
   }
 
   onResultSelect(event, { result }) {
-
     this.setState({
-      highlights: result.locations.map(loc => [buildings[loc]['x'], buildings[loc]['y']])
+      highlights: result.locations.map(loc => buildings[loc])
     })
-
-    console.log(this.state)
   }
 
   componentDidMount() {
   }
 
   render() {
+
     return (<div>
       <Container fluid>
         <div>
           <ReactMapGL
             mapboxApiAccessToken={mapboxToken}
             {...this.state.viewport}
-            onViewportChange={(viewport) => this.setState({ viewport })}
+            onViewportChange={(viewport) => this.setState({ viewport: viewport })}
             mapStyle={'mapbox://styles/mapbox/streets-v9'}
           >
+            {this.state.highlights.map(loc => (
+              <Marker key={loc.lat} latitude={loc.lat} longitude={loc.long} offsetLeft={-20} offsetTop={-10}>
+                <Pin  />
+              </Marker>)
+            )
+            }
             <SearchBar
               data={tools}
               onResultSelect={this.onResultSelect.bind(this)}
             />
+
           </ReactMapGL>
         </div>
       </Container>
-    </div>
+    </div >
     )
   }
 }

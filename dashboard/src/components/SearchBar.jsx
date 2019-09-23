@@ -13,7 +13,10 @@ const searchStyle = {
 export default class SearchBar extends React.Component {
   state = initialState
 
-  handleResultSelect = (e, { result }) => this.setState({ value: result.title })
+  handleResultSelect = (e, { result }) => {
+    this.setState({ value: result.title })
+    this.props.onResultSelect(e, { result })
+  }
 
   handleSearchChange = (e, { value }) => {
     this.setState({ isLoading: true, value })
@@ -38,13 +41,12 @@ export default class SearchBar extends React.Component {
       <div style={searchStyle}>
         <Search
           loading={isLoading}
-          onResultSelect={this.props.onResultSelect}
+          onResultSelect={this.handleResultSelect}
           onSearchChange={_.debounce(this.handleSearchChange, 500, {
             leading: true,
           })}
           results={results}
           value={value}
-          {...this.props}
         />
       </div>
     )
