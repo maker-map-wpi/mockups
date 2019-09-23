@@ -5,7 +5,8 @@
   "main": "index.html",
   "scripts": {
     "start": "parcel ./src/index.html",
-    "build": "parcel build ./src/index.html/"
+    "build": "parcel build ./src/index.html/",
+    "deploy": "npm run-script build && cp ./src/error.html ./dist/error.html && aws s3 rm s3://makermap.arjungandhi.com --recursive && aws s3 sync dist/ s3://makermap.arjungandhi.com"
   },
   "repository": {
     "type": "git",
