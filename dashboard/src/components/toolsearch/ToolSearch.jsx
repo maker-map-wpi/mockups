@@ -105,7 +105,7 @@ export default class ToolSearch extends React.Component {
             mapboxApiAccessToken={mapboxToken}
             {...this.state.viewport}
             onViewportChange={(viewport) => this.setState({ viewport: viewport })}
-            mapStyle={'mapbox://styles/mapbox/streets-v9'}
+            mapStyle={'mapbox://styles/mapbox/street-v9'}
           >
             {this.state.highlights.map(loc => (
               <Marker key={loc.lat} latitude={loc.lat} longitude={loc.long} offsetLeft={-20} offsetTop={-10}>

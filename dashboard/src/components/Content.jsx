@@ -1,7 +1,8 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import {Segment} from 'semantic-ui-react'
-import ToolSearch from './ToolSearch.jsx'
+import ToolSearch from './toolsearch/ToolSearch.jsx'
+import Scheduler from './scheduler/Scheduler.jsx'
 
 const divStyle= {
   marginLeft: '210px',
@@ -22,6 +23,7 @@ export default class Content extends React.Component {
     return (<div style={divStyle}>
       <Switch>
       <Route path='/resources/tools' component={ToolSearch}/>
+      <Route path='/resources/schedule/{tool}' component={Scheduler}>
 
 
     </Switch>
