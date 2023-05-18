@@ -7,7 +7,7 @@ import ReactMapGL, { Marker, Popup } from 'react-map-gl';
 
 
 
-const mapboxToken = "pk.eyJ1IjoibWFrZXJtYXB3cGkiLCJhIjoiY2swdTltbzh3MGx5cDNjcjFwZ3VzazMyOSJ9.1v6fPlHkiBC92yjc-rV6iQ"
+const mapboxToken = "pk.eyJ1IjoibWFrZXJtYXB3cGkiLCJhIjoiY2xodHE1NHR6MnhzazNncHN5b2UwOWV4ZyJ9.AzKGfiTllwHOCnUobMvHxQ"
 
 const tools = [
   {
@@ -105,7 +105,7 @@ export default class ToolSearch extends React.Component {
             mapboxApiAccessToken={mapboxToken}
             {...this.state.viewport}
             onViewportChange={(viewport) => this.setState({ viewport: viewport })}
-            mapStyle={'mapbox://styles/mapbox/street-v9'}
+            mapStyle={'mapbox://styles/mapbox/streets-v12'}
           >
             {this.state.highlights.map(loc => (
               <Marker key={loc.lat} latitude={loc.lat} longitude={loc.long} offsetLeft={-20} offsetTop={-10}>

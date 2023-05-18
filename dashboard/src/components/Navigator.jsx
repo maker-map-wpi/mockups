@@ -16,7 +16,7 @@ export default class Task extends React.Component {
   render() {
     return (<Menu inverted fixed='left' vertical borderless>
       <Menu.Item header>
-        <Image src='https://upload.wikimedia.org/wikipedia/en/1/1b/WPI_logo.png' size='mini' spaced='right' />
+        <Image src='https://www.wpi.edu/sites/default/files/inline-image/Offices/Marketing-Communications/WPI_Inst_Prim_FulClr_PREVIEW.png' size='mini' spaced='right' />
         <strong>Maker Map &nbsp;</strong>
         <small>v0.0.0</small>
       </Menu.Item>

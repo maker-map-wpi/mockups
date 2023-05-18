@@ -23,7 +23,7 @@ export default class Content extends React.Component {
     return (<div style={divStyle}>
       <Switch>
       <Route path='/resources/tools' component={ToolSearch}/>
-      <Route path='/resources/schedule/{tool}' component={Scheduler}>
+      <Route path='/resources/schedule/{tool}' component={Scheduler}/>
 
 
     </Switch>
